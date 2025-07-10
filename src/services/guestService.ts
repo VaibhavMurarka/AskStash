@@ -100,8 +100,7 @@ class GuestService {
         context = selectedDocs.map(doc => `--- Document: ${doc.filename} ---\n${doc.content}`).join('\n\n');
         contextSources = selectedDocs.map(doc => ({ id: doc.id, filename: doc.filename }));
       }
-
-      const response = await fetch('https://vaibhavmurarka14.pythonanywhere.com/api/guest/chat', {
+      const response = await fetch('https://vaibhavmurarka2.pythonanywhere.com/api/guest/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -140,7 +139,7 @@ class GuestService {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await fetch('https://vaibhavmurarka14.pythonanywhere.com/api/guest/extract-text', {
+      const response = await fetch('https://vaibhavmurarka2.pythonanywhere.com/api/guest/extract-text', {
         method: 'POST',
         body: formData,
       });
