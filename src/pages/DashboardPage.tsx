@@ -163,7 +163,7 @@ const DashboardPage: React.FC = () => {
         // Guest mode - process locally
         const extractedText = await guestService.extractTextFromFile(file);
         
-        const guestDoc = guestService.saveDocument({
+        guestService.saveDocument({
           filename: file.name,
           content: extractedText,
           file_type: file.type || 'unknown',
@@ -277,16 +277,16 @@ const DashboardPage: React.FC = () => {
       setSelectedDocuments([]);
     } else if (mode === 'all') {
       setSelectedDocuments([]);
-    } else {
-      // No action needed for 'selected' mode
     }
   };
 
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
-        <div className="flex items-center justify-between h-16 px-4 bg-primary-600 text-white">
+      {/* CORRECTED: Added flex and flex-col to make the sidebar a flex container */}
+      <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 flex flex-col`}>
+        {/* Sidebar Header (no changes needed) */}
+        <div className="flex items-center justify-between h-16 px-4 bg-primary-600 text-white flex-shrink-0">
           <div>
             <h1 className="text-xl font-bold">AskStash</h1>
             {isGuestMode && (
@@ -303,7 +303,8 @@ const DashboardPage: React.FC = () => {
           </button>
         </div>
         
-        <div className="p-4">
+        {/* CORRECTED: New scrollable content area */}
+        <div className="flex-1 overflow-y-auto p-4">
           {isGuestMode && (
             <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
               <div className="flex items-center mb-2">
@@ -333,7 +334,6 @@ const DashboardPage: React.FC = () => {
             />
           </div>
 
-          {/* Context Mode Selection */}
           <div className="mb-4">
             <h3 className="text-sm font-medium text-gray-700 mb-2">Context Mode</h3>
             <div className="space-y-2">
@@ -385,7 +385,8 @@ const DashboardPage: React.FC = () => {
             <h3 className="text-sm font-medium text-gray-700 mb-2">
               Your Documents ({documents.length})
             </h3>
-            <div className="space-y-2 max-h-80 overflow-y-auto">
+            {/* CORRECTED: Removed max-h-80 and overflow-y-auto */}
+            <div className="space-y-2">
               {documents.length === 0 ? (
                 <p className="text-xs text-gray-500 italic">No documents uploaded yet</p>
               ) : (
@@ -431,52 +432,53 @@ const DashboardPage: React.FC = () => {
               )}
             </div>
           </div>
-          
-          <div className="border-t pt-4">
-            {isGuestMode ? (
-              <div className="space-y-3">
-                <button
-                  onClick={() => window.location.href = '/register'}
-                  className="w-full btn-primary text-center"
-                >
-                  Create Account
-                </button>
-                <button
-                  onClick={() => window.location.href = '/login'}
-                  className="w-full btn-secondary text-center"
-                >
-                  Sign In
-                </button>
-                <button
-                  onClick={handleLogout}
-                  className="w-full text-sm text-gray-600 hover:text-gray-800"
-                >
-                  Exit Guest Mode
-                </button>
-              </div>
-            ) : (
-              <div>
-                <div className="flex items-center space-x-2 mb-2">
-                  <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
-                    <span className="text-primary-600 font-medium">
-                      {user?.full_name?.charAt(0) || 'U'}
-                    </span>
-                  </div>
-                  <span className="text-sm font-medium text-gray-700">{user?.full_name}</span>
+        </div>
+        
+        {/* CORRECTED: Moved the user/logout section out to be a fixed footer */}
+        <div className="border-t p-4 flex-shrink-0">
+          {isGuestMode ? (
+            <div className="space-y-3">
+              <button
+                onClick={() => window.location.href = '/register'}
+                className="w-full btn-primary text-center"
+              >
+                Create Account
+              </button>
+              <button
+                onClick={() => window.location.href = '/login'}
+                className="w-full btn-secondary text-center"
+              >
+                Sign In
+              </button>
+              <button
+                onClick={handleLogout}
+                className="w-full text-sm text-gray-600 hover:text-gray-800"
+              >
+                Exit Guest Mode
+              </button>
+            </div>
+          ) : (
+            <div>
+              <div className="flex items-center space-x-2 mb-2">
+                <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                  <span className="text-primary-600 font-medium">
+                    {user?.full_name?.charAt(0) || 'U'}
+                  </span>
                 </div>
-                <button
-                  onClick={handleLogout}
-                  className="w-full btn-secondary text-left"
-                >
-                  Logout
-                </button>
+                <span className="text-sm font-medium text-gray-700">{user?.full_name}</span>
               </div>
-            )}
-          </div>
+              <button
+                onClick={handleLogout}
+                className="w-full btn-secondary text-left"
+              >
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* Main Content (no changes needed here) */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <header className="bg-white shadow-sm border-b h-16 flex items-center px-4">
@@ -512,7 +514,7 @@ const DashboardPage: React.FC = () => {
                   <div className="flex justify-start">
                     <div className="chat-message assistant max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
                       {/* Context indicator */}
-                      {message.context_documents && (
+                      {message.context_documents && JSON.parse(message.context_documents).length > 0 && (
                         <div className="mb-2 text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded">
                           📄 Using context from: {
                             JSON.parse(message.context_documents).map((doc: any) => doc.filename).join(', ')
@@ -596,4 +598,4 @@ const DashboardPage: React.FC = () => {
   );
 };
 
-export default DashboardPage; 
+export default DashboardPage;
