@@ -239,7 +239,7 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100 overflow-hidden">
+    <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
       <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 flex flex-col`}>
         {/* Sidebar Header */}
@@ -395,13 +395,19 @@ const DashboardPage = () => {
           {isGuestMode ? (
             <div className="space-y-3">
               <button
-                onClick={() => navigate('/register')}
+                onClick={() => {
+                  logout();
+                  navigate('/register');
+                }}
                 className="w-full btn-primary text-center"
               >
                 Create Account
               </button>
               <button
-                onClick={() => navigate('/login')}
+                onClick={() => {
+                  logout();
+                  navigate('/login');
+                }}
                 className="w-full btn-secondary text-center"
               >
                 Sign In
@@ -437,7 +443,7 @@ const DashboardPage = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <header className="bg-white shadow-sm border-b h-16 flex items-center px-4 flex-shrink-0">
+        <header className="bg-white shadow-sm border-b h-16 flex items-center px-4">
           <button
             onClick={() => setSidebarOpen(true)}
             className="lg:hidden mr-4"
@@ -500,7 +506,7 @@ const DashboardPage = () => {
         </div>
 
         {/* Message Input */}
-        <div className="bg-white border-t p-4 flex-shrink-0">
+        <div className="bg-white border-t p-4">
           {/* Context status indicator */}
           {(contextMode === 'selected' && selectedDocuments.length > 0) || contextMode === 'all' ? (
             <div className="mb-3 text-xs text-blue-600 bg-blue-50 px-3 py-2 rounded-lg">
