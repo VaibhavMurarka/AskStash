@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-/**
- * The login page component. Allows users to sign in with their credentials
- * or continue as a guest.
- */
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,10 +11,6 @@ const LoginPage = () => {
   const { login, enterGuestMode } = useAuth();
   const navigate = useNavigate();
 
-  /**
-   * Handles the form submission for user login.
-   * @param {object} e - The form event object.
-   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -34,16 +26,13 @@ const LoginPage = () => {
     }
   };
 
-  /**
-   * Handles the guest mode entry.
-   */
   const handleGuestMode = () => {
     enterGuestMode();
     navigate('/dashboard');
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="h-screen overflow-hidden flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
