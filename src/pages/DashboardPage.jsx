@@ -521,8 +521,9 @@ const DashboardPage = () => {
               ⚠️ No documents selected. Select documents in the sidebar or switch to "All documents" mode.
             </div>
           ) : (
-            <div className="mb-3 text-xs text-gray-500 bg-gray-50 px-3 py-2 rounded-lg">
-              🤖 General AI mode - no document context
+            <div className="mb-3 text-xs text-gray-500 bg-gray-50 px-3 py-2 rounded-lg flex items-center">
+              <img src="/ailogo.svg" alt="AI mode" className="w-4 h-4 mr-2" />
+              <span>General AI mode - no document context</span>
             </div>
           )}
           
