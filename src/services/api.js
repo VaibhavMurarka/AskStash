@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://vaibhavmurarka2.pythonanywhere.com';
+const API_BASE_URL = 'https://askstashserver.onrender.com';
+//'https://vaibhavmurarka2.pythonanywhere.com';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

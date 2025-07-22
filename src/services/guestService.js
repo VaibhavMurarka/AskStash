@@ -142,7 +142,7 @@ class GuestService {
         contextSources = selectedDocs.map(doc => ({ id: doc.id, filename: doc.filename }));
       }
       
-      const response = await fetch('https://vaibhavmurarka2.pythonanywhere.com/api/guest/chat', {
+      const response = await fetch('https://askstashserver.onrender.com/api/guest/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message, context, context_sources: contextSources }),
@@ -178,7 +178,7 @@ class GuestService {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await fetch('https://vaibhavmurarka2.pythonanywhere.com/api/guest/extract-text', {
+      const response = await fetch('https://askstashserver.onrender.com/api/guest/extract-text', {
         method: 'POST',
         body: formData,
       });
