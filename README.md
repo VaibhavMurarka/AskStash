@@ -20,33 +20,35 @@ AskStash is an intelligent AI-powered chat application that allows you to upload
 
 When you first arrive, you can either sign in, create a new account, or try the app as a guest.
 
-![Login Page](https://i.imgur.com/gK4bX4H.png)
+![Login Page](https://github.com/VaibhavMurarka/AskStash/blob/main/readmepictures/signin.png)
+
+![Register Page](https://github.com/VaibhavMurarka/AskStash/blob/main/readmepictures/register.png)
 
 ### Step 2: The Dashboard
 
 The main dashboard is split into two sections: the control sidebar on the left and the chat interface on the right.
 
-![Dashboard Overview](https://i.imgur.com/k2j1R2d.png)
+![Dashboard Overview](https://github.com/VaibhavMurarka/AskStash/blob/main/readmepictures/guestmode.png)
 
 ### Step 3: Upload a Document
 
 Click the "Upload Document" button in the sidebar to add a new file. The document will be processed and added to your list.
 
-![Uploading a Document](https://i.imgur.com/B9O0o3X.png)
+![Uploading a Document](https://github.com/VaibhavMurarka/AskStash/blob/main/readmepictures/fileupload.png)
 
 ### Step 4: Chat with Document Context
 
 Set your context mode and ask questions about the document you uploaded. The AI will read the document to find the answer and indicate which document it used.
 
-![Chatting with Context](https://i.imgur.com/fJ8e9p2.png)
+![Chatting with Context](https://github.com/VaibhavMurarka/AskStash/blob/main/readmepictures/fileselection.png)
 
 ### Step 5: Manage Your Documents
 
 You can delete any document by clicking the trash icon next to its name in the sidebar.
 
-![Deleting a Document](https://i.imgur.com/sS7v6t5.png)
+![Deleting a Document](https://github.com/VaibhavMurarka/AskStash/blob/main/readmepictures/filedelete.png)
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Frontend:** React, JavaScript , Tailwind CSS
 - **Backend:** FastAPI (Python) , PostgreSQL
