@@ -5,6 +5,23 @@ import { chatAPI, documentAPI } from '../services/api';
 import { guestService } from '../services/guestService';
 import ConfirmationModal from '../components/ConfirmationModal';
 
+// A simple component to render text with basic Markdown formatting
+const MarkdownRenderer = ({ text }) => {
+  // First, replace **text** with <strong>text</strong> for bolding
+  let formattedHtml = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  
+  // Then, replace lines starting with * with a bullet point character (•)
+  // The 'g' flag ensures all occurrences are replaced, and 'm' allows ^ to match the start of each line
+  formattedHtml = formattedHtml.replace(/^\* (.*$)/gm, '• $1');
+  
+  return (
+    <p 
+      className="text-sm text-gray-800 whitespace-pre-wrap break-words"
+      dangerouslySetInnerHTML={{ __html: formattedHtml }} 
+    />
+  );
+};
+
 const DashboardPage = () => {
   const { user, logout, isGuestMode } = useAuth();
   const navigate = useNavigate();
@@ -483,7 +500,7 @@ const DashboardPage = () => {
                           }
                         </div>
                       )}
-                      <p className="text-sm text-gray-800 whitespace-pre-wrap break-words">{message.response}</p>
+                      <MarkdownRenderer text={message.response} />
                     </div>
                   </div>
                 )}
